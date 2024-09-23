@@ -1,0 +1,24 @@
+﻿<Window x:Class="Ex7_ExternalLibs.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:Ex7_ExternalLibs"
+        mc:Ignorable="d"
+        Title="Ex7-ExternalLibs" Height="600" Width="800" Loaded="MainWindow_Loaded">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+            <TextBlock Text="Selecciona el tipus de gràfic:" FontSize="16" HorizontalAlignment="Center" Margin="10"/>
+
+            <!-- ComboBox per seleccionar el tipus de gràfic -->
+            <ComboBox Name="ChartTypeComboBox" Width="200" SelectionChanged="ChartTypeComboBox_SelectionChanged" HorizontalAlignment="Center">
+                <ComboBoxItem Content="Gràfic de Línies" IsSelected="True"/>
+                <ComboBoxItem Content="Gràfic de Barres"/>
+            </ComboBox>
+        </StackPanel>
+        <!-- Contenidor del gràfic -->
+        <lvc:CartesianChart Name="MyChart" LegendLocation="Right" Margin="10" VerticalAlignment="Center" Height="300"/>
+
+    </Grid>
+</Window>

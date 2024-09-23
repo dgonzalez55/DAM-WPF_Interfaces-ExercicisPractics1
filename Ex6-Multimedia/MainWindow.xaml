@@ -1,0 +1,52 @@
+﻿<Window x:Class="Ex6_Multimedia.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ex6_Multimedia"
+        mc:Ignorable="d"
+        Title="Ex6-Multimedia" Height="600" Width="800">
+    <DockPanel Background="#ECECEC">
+        <!-- Barra superior per al control de la mida i estil -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+            <TextBlock Text="Ajusta la mida de la imatge: " VerticalAlignment="Center"/>
+            <Slider x:Name="ImageSizeSlider" Width="200" Minimum="100" Maximum="500" ValueChanged="ImageSizeSlider_ValueChanged" Margin="10,0"/>
+        </StackPanel>
+
+        <!-- Organització horitzontal per galeria d'imatges i reproductor de vídeos -->
+        <Grid DockPanel.Dock="Top" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Galeria d'imatges i controls de navegació -->
+            <Grid Grid.Column="0" VerticalAlignment="Top" Margin="10" Background="White" Height="400">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Galeria d'Imatges" FontSize="20" HorizontalAlignment="Center" Margin="10" Grid.Row="0"/>
+                <Image Name="GalleryImage" Width="350" Height="300" Stretch="Uniform" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Grid.Row="2">
+                    <Button Content="⟨" Width="50" Click="PreviousImage_Click" />
+                    <Button Content="⟩" Width="50" Click="NextImage_Click" />
+                </StackPanel>
+            </Grid>
+
+            <!-- Reproductor de vídeos -->
+            <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10" Background="White" Height="400">
+                <TextBlock Text="Reproductor de Vídeos" FontSize="20" HorizontalAlignment="Center" Margin="10"/>
+                <MediaElement Name="VideoPlayer" VerticalAlignment="Center" HorizontalAlignment="Center" Width="350" Height="300" 
+                              LoadedBehavior="Manual" UnloadedBehavior="Stop" Margin="10" Stretch="Uniform"
+                              Source="Videos/video1.mp4"  MediaEnded="VideoPlayer_MediaEnded" />
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10">
+                    <Button Content="▶" Width="50" Click="PlayVideo_Click"/>
+                    <Button Content="⏸" Width="50" Click="PauseVideo_Click"/>
+                    <Button Content="⏹" Width="50" Click="StopVideo_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>

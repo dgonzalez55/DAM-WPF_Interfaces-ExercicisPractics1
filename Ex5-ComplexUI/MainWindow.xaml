@@ -1,0 +1,62 @@
+﻿<Window x:Class="Ex5_ComplexUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ex5_ComplexUI"
+        mc:Ignorable="d"
+        Title="Ex5-ComplexUI" Height="450" Width="800">
+    <!-- Recursos i estils -->
+    <Window.Resources>
+        <!-- Estil per al ListBoxItem personalitzat -->
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#2C3E50"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="16"/>
+
+            <!-- Plantilla personalitzada -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="Bd" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Left"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Canvi de color en passar el ratolí -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#34495E"/>
+                            </Trigger>
+                            <!-- Canvi de color i estil en seleccionar -->
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#1ABC9C"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <!-- Contenidor principal DockPanel -->
+    <DockPanel>
+
+        <!-- Barra de navegació lateral estil SPA amb ListBox -->
+        <ListBox DockPanel.Dock="Left" Width="150" Background="#2C3E50" Foreground="White" BorderThickness="0"
+                 SelectionChanged="NavigationList_SelectionChanged">
+            <ListBoxItem Content="Inici" Tag="Home" Name="liHome" FontSize="16" Padding="10" HorizontalContentAlignment="Left"/>
+            <ListBoxItem Content="Configuració   ▶" Tag="Settings" Name="liSettings" FontSize="16" Padding="10" HorizontalContentAlignment="Left" />
+            <ListBoxItem Content="Preferències" Tag="Preferences" Name="liSettingsPref" FontSize="16" Padding="20 10" HorizontalContentAlignment="Left" Visibility="Collapsed"/>
+            <ListBoxItem Content="Seguretat" Tag="Security" Name="liSettingsSec" FontSize="16" Padding="20 10" HorizontalContentAlignment="Left" Visibility="Collapsed"/>
+            <ListBoxItem Content="Sobre" Tag="About" Name="liAbout" FontSize="16" Padding="10" HorizontalContentAlignment="Left"/>
+        </ListBox>
+
+        <!-- Secció de contingut dinàmic (Grid) -->
+        <Grid Name="MainContent" Background="White" Margin="10">
+            <!-- Contingut per defecte -->
+            <TextBlock FontSize="20" FontWeight="Bold" Text="Benvingut a l'aplicació!" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+
+    </DockPanel>
+</Window>
